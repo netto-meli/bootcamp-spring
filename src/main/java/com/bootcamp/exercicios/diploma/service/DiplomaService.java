@@ -17,11 +17,13 @@ public class DiplomaService {
 
 	public String getAlunoComMedia(String nome){
 		double media;
+		String parabens = "";
 		Aluno aluno = listaAlunos.stream().filter( al -> al.getNome().equals(nome) ).findFirst().orElse(null);
 		if (aluno != null) {
 			media = aluno.getListaDisciplinas().stream().mapToDouble(Disciplina::getNota).sum();
 			media /= aluno.getListaDisciplinas().size();
-			return  aluno + "\nMédia: "+ media;
+			if (media >= 9) parabens = "\n\nAluno está de parabens.";
+			return  aluno + "\nMédia: "+ media + parabens;
 		} else
 			return "Aluno inexistente";
 	}

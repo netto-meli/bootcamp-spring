@@ -15,7 +15,7 @@ public class ClienteDTO {
     private final long cpf;
     private final String email;
     private final long telefone;
-    // private List<PedidoDTO> pedidos;
+    private List<PedidoDTO> pedidos;
 
     public static Cliente converte(ClienteDTO clienteDTO) {
         return new Cliente(clienteDTO.getId(), clienteDTO.getNome(),
@@ -23,7 +23,8 @@ public class ClienteDTO {
     }
 
     public static ClienteDTO converte(Cliente cliente) {
+        List<PedidoDTO> pedidoDTOS = PedidoDTO.converte(cliente.getPedidos());
         return new ClienteDTO(cliente.getId(), cliente.getNome(),
-                cliente.getCpf(), cliente.getEmail(), cliente.getTelefone());
+                cliente.getCpf(), cliente.getEmail(), cliente.getTelefone(), pedidoDTOS);
     }
 }

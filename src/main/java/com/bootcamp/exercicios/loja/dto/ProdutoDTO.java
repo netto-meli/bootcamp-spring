@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,4 +28,9 @@ public class ProdutoDTO {
                 produto.getQuantidade(),produto.getPreco());
     }
 
+    public static List<ProdutoDTO> converte(List<Produto> listaProduto) {
+        List<ProdutoDTO> listaProdutoDTO = new ArrayList<>();
+        listaProduto.forEach(pd -> listaProdutoDTO.add( converte(pd)));
+        return listaProdutoDTO;
+    }
 }

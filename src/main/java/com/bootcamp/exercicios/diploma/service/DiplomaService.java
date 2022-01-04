@@ -7,6 +7,21 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+Exceções de dados de entrada.
+As exceções de dados de entrada devem ser tratadas usando as seguintes classes
+ValidationError: indicando campo e mensagem
+ApiExceptionControllerAdvice
+
+Exceções de resposta.
+As exceções de resposta devem ser tratadas com as seguintes classes
+ValidationError
+ApiExceptionControllerAdvice
+
+Outras exceções que você acha que são necessárias devem ser tratadas, sempre
+tratando-as dentro da classe
+ApiExceptionControllerAdvice.
+ */
 @Service
 public class DiplomaService {
 	List<Aluno> listaAlunos = new ArrayList<>();

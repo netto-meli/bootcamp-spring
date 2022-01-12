@@ -14,7 +14,9 @@ registro de caixa e retirando todos os pedidos para a respectiva mesa.
 
 import com.bootcamp.exercicios.restaurante.dto.MesaDTO;
 import com.bootcamp.exercicios.restaurante.dto.PedidoDTO;
+import com.bootcamp.exercicios.restaurante.dto.PratoDTO;
 import com.bootcamp.exercicios.restaurante.entity.Mesa;
+import com.bootcamp.exercicios.restaurante.entity.Prato;
 import com.bootcamp.exercicios.restaurante.service.RestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,13 +32,16 @@ public class RestauranteController {
 	@Autowired
 	private RestauranteService restauranteService;
 
-/*
-	@GetMapping("/cardapio/")
-	public List<PratoDTO> listaPratos(@PathVariable Long id){
-		Mesa mesa = restauranteService.getPedidosMesa(id);
-		return MesaDTO.converte(mesa);
+	@PostMapping("/abreRestaurante/{numeroMesas}")
+	public void abreRestaurante(@RequestBody List<PratoDTO> pratos, @PathVariable int numeroMesas){
+		restauranteService.abreRestaurante(numeroMesas, PratoDTO.converteList(pratos));
 	}
-*/
+
+	@GetMapping("/cardapio/")
+	public List<PratoDTO> listaPratos(){
+		List<Prato> pratos = restauranteService.getCardapio();
+		return PratoDTO.converte(pratos);
+	}
 
 	@PostMapping("/adicionaPedido/{id}")
 	public MesaDTO adicionaPedidoMesa(@RequestBody PedidoDTO pedido, @PathVariable Long id){

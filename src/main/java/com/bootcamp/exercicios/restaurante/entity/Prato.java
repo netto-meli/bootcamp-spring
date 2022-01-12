@@ -10,6 +10,6 @@ import java.math.BigDecimal;
 public class Prato {
     private final Long id;
     private final String descricao;
-    private final int quantidade;
+    private int quantidade;
     private final BigDecimal preco;
 }

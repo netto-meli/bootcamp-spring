@@ -2,6 +2,7 @@ package com.bootcamp.exercicios.restaurante.service;
 
 import com.bootcamp.exercicios.restaurante.entity.Mesa;
 import com.bootcamp.exercicios.restaurante.entity.Pedido;
+import com.bootcamp.exercicios.restaurante.entity.Prato;
 import com.bootcamp.exercicios.restaurante.repository.RestauranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,12 @@ public class RestauranteService {
     }
 
     public Mesa adicionaPedidoMesa(Long idMesa, Pedido pedido) {
+        List<Prato> pratosPedido = pedido.getPratos();
+        for (Prato p: pratosPedido) {
+            restaurante.verificaDisponibilidadePrato(p);
+        }
+        restaurante.baixaDePratos(pratosPedido);
+        pedido.setPratos(restaurante.dadosPratosPedido(pratosPedido));
         return restaurante.adicionaPedidoMesa(idMesa,pedido);
     }
 
@@ -37,5 +44,14 @@ public class RestauranteService {
 
     public BigDecimal getValorCaixa(){
         return restaurante.getValorCaixa();
+    }
+
+    public void abreRestaurante(int numeroMesas, List<Prato> listaPratos) {
+        restaurante.abreRestaurante(numeroMesas, listaPratos);
+    }
+
+    public List<Prato> getCardapio() {
+        List<Prato> listaPratos = restaurante.getCardapio();
+        return listaPratos;
     }
 }

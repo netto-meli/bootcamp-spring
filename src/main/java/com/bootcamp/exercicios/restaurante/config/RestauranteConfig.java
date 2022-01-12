@@ -13,6 +13,6 @@ public class RestauranteConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        mesas.abreRestaurante();
+        //mesas.abreRestaurante();
     }
 }

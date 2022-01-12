@@ -13,7 +13,8 @@ public class Pedido {
     @Setter
     private Long id;
     private final Long idMesa;
-    private final List<Prato> pratos;
+    @Setter
+    private List<Prato> pratos;
     private BigDecimal valorTotal;
 
     public void calculaValorTotal() {

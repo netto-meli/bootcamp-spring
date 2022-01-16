@@ -12,11 +12,11 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class ProdutoDTO {
-    private final long id;
-    private final String descricao;
-    private final String cor;
-    private final long quantidade;
-    private final BigDecimal preco;
+    private long id;
+    private String descricao;
+    private String cor;
+    private long quantidade;
+    private BigDecimal preco;
 
     public static Produto converte(ProdutoDTO produtoDTO) {
         return new Produto(produtoDTO.getId(), produtoDTO.getDescricao(), produtoDTO.getCor(),

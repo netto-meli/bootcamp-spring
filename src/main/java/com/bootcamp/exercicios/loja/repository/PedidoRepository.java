@@ -1,27 +1,16 @@
 package com.bootcamp.exercicios.loja.repository;
 
 import com.bootcamp.exercicios.loja.entity.Pedido;
-import org.springframework.stereotype.Component;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-@Component
-public class PedidoRepository {
+@Repository
+public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
-    private List<Pedido> pedidos = new ArrayList<>();
-
-    public long newId() {
-        return pedidos.size() + 1;
-    }
-
-    public void add(Pedido pedido) {
-        pedidos.add(pedido);
-    }
-
-    public Pedido get(long idPedido) {
-        Optional<Pedido> op = pedidos.stream().filter(p -> p.getId() == idPedido).findAny();
-        return op.orElse(null);
-    }
+    //@Query( value = "from pedido p where p.cliente_id = :id")
+    List<Pedido> findAllByClienteId(@Param("id") Long id);
 }

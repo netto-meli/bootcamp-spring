@@ -81,18 +81,16 @@ public class LojaController {
 	public ClienteDTO consultarCliente(@PathVariable String idCliente){
 		Cliente cliente = lojaService.consultarCliente(idCliente);
 		List<PedidoDTO> listaPedidosDTO = consultarPedidos(idCliente);
-		/*
 		List<Pedido> pedidoList = lojaService.consultarPedidos(idCliente);
-
+		/*
 		List<PedidoDTO> listaPedidosDTO = new ArrayList<>();
 		pedidoList.forEach( p -> {
 			List<ItemPedido> itemPedidoList = lojaService.consultarItemPedido(p.getId().toString());
 			listaPedidosDTO.add( PedidoDTO.converte(p, itemPedidoList));
 		} );*/
 		// todo arrumar (tá cagado)
-		//List<ItemPedido> itemPedidoList = lojaService.consultarItemPedidos(idCliente);
-		// ClienteDTO.converte( cliente, pedidoList, new ArrayList<>());//itemPedidoList);
-		ClienteDTO clienteDTO = ClienteDTO.converte( cliente, new ArrayList<>(), new ArrayList<>());
+		List<ItemPedido> itemPedidoList = lojaService.consultarItemPedidos(idCliente);
+		ClienteDTO clienteDTO = ClienteDTO.converte( cliente, pedidoList, itemPedidoList);
 		clienteDTO.setPedidos(listaPedidosDTO);
 
 		return clienteDTO;

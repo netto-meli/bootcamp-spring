@@ -47,11 +47,11 @@ public class LojaService {
 	public List<Pedido> consultarPedidos(String idCliente) {
 		return pedidoRepository.findAllByClienteId(Long.valueOf(idCliente));
 	}
-/*
+
 	public List<ItemPedido> consultarItemPedidos(String idCliente) {
 		return itemPedidoRepository.findAllByClienteId(Long.valueOf(idCliente));
 	}
-*/
+
 	public List<ItemPedido> consultarItemPedido(String idPedido) {
 		return itemPedidoRepository.findAllByPedidoId(Long.valueOf(idPedido));
 	}
